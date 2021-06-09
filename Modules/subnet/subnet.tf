@@ -7,7 +7,7 @@ resource "azurerm_subnet" "subnet" {
   enforce_private_link_endpoint_network_policies = lookup(each.value, "subnet_enforce_private_link_endpoint_network_policies")
   enforce_private_link_service_network_policies  = lookup(each.value, "subnet_enforce_private_link_service_network_policies")
   service_endpoints                              = lookup(each.value, "service_endpoints", null)
-/*
+
   dynamic "delegation" {
     for_each = each.value.service_delegations
     content {
@@ -21,9 +21,8 @@ resource "azurerm_subnet" "subnet" {
         }
       }
     }
-  */
+  }
 }
-
   # delegation_name                                = lookup(each.value, "delegation_name", null)
   # service_delegation_name                        = lookup(each.value, "delegation_name", null)
   # service_delegation_actions                     = lookup(each.value, "service_delegation_actions", null)

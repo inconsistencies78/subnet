@@ -46,7 +46,15 @@ module "subnet-VNET-DEV" {
       subnet_address_prefixes                               = ["10.0.2.0/24", ]
       subnet_enforce_private_link_endpoint_network_policies = true
       subnet_enforce_private_link_service_network_policies  = false
-#      service_endpoints                                     = []
+      service_endpoints                                     = []
+      service_delegations = {
+        acctestdelegation = {
+          "Microsoft.ContainerInstance/containerGroups" = [
+            "Microsoft.Network/virtualNetworks/subnets/join/action",
+            "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
+          ]
+        }
+      }
     }
   }
 }
